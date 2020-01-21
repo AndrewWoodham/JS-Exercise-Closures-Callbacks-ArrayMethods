@@ -246,8 +246,10 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners, ) {
+  return runners.reduce((accum, item) => {
+    return accum + item.donation;
+  }, 0);
 }
 
 /////////////// CLOSURES ///////////////
@@ -267,10 +269,9 @@ function tallyUpDonations(/* CODE HERE */) {
  * etc
 */
 function counterMaker() {
-  // BROKEN CODE STARTS
-  const count = 0;
-  function counter() {
-    ++count
+  let count = 0;
+  return () => {
+    return count++;
   }
   // BROKEN CODE ENDS
 }
@@ -295,8 +296,17 @@ function counterMaker() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(limit) {
+  let count = 0;
+
+  return function(){
+    if (count < limit) {
+      return count++
+    } else {
+      count = 0;
+      return limit;
+    }
+  }
 }
 
 /////////////// END OF CHALLENGE ///////////////
